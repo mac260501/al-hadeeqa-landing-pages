@@ -29,15 +29,18 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=DM+Sans:wght@300;400;500;600;700&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
 
-<!-- GA4 placeholder. Uncomment when live.
+<!-- GA4 + Google Ads conversion tracking -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-HCC52FX6VK"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
-  gtag('config', 'G-HCC52FX6VK');
+  gtag('config', 'G-HCC52FX6VK', {
+    'page_path': window.location.pathname,
+    'page_title': document.title
+  });
+  gtag('config', 'AW-658897837');
 </script>
--->
 
 <script type="application/ld+json">
 {
@@ -2990,6 +2993,82 @@
     }
     window.addEventListener('scroll', onScroll, {passive: true});
   })();
+</script>
+
+<!--
+  ============================================================
+  CONVERSION TRACKING — DO NOT REMOVE
+  ============================================================
+  This block fires events to:
+  - GA4 property: G-HCC52FX6VK
+  - Google Ads account: AW-658897837
+
+  Events tracked:
+  - whatsapp_click (with tier/addon labels)
+  - form_submit
+  - phone_click
+  - email_click
+
+  Last updated: May 2026
+  ============================================================
+-->
+<script>
+(function() {
+  function trackConversion(eventName, label) {
+    if (typeof gtag !== 'function') return;
+
+    gtag('event', eventName, {
+      'event_category': 'engagement',
+      'event_label': label,
+      'value': 1
+    });
+
+    // Replace AW-658897837/PERGOLA_WHATSAPP_CONV_ID with the real conversion
+    // label from Google Ads after Part 3.4 of the tracking checklist.
+    gtag('event', 'conversion', {
+      'send_to': 'AW-658897837/PERGOLA_WHATSAPP_CONV_ID',
+      'event_callback': function() {}
+    });
+  }
+
+  document.querySelectorAll('a[href*="wa.me"]').forEach(function(link) {
+    link.addEventListener('click', function() {
+      var label = link.textContent.trim().toLowerCase();
+      if (label.indexOf('classic shade') !== -1) {
+        trackConversion('whatsapp_click', 'tier_classic');
+      } else if (label.indexOf('louvered shade') !== -1) {
+        trackConversion('whatsapp_click', 'tier_louvered');
+      } else if (label.indexOf('smart shade') !== -1) {
+        trackConversion('whatsapp_click', 'tier_smart');
+      } else if (label.indexOf('exterior painting') !== -1 || label.indexOf('add to my project') !== -1) {
+        trackConversion('whatsapp_click', 'addon_painting');
+      } else if (label.indexOf('discuss') !== -1) {
+        trackConversion('whatsapp_click', 'addon_other');
+      } else {
+        trackConversion('whatsapp_click', 'general_cta');
+      }
+    });
+  });
+
+  var form = document.querySelector('form');
+  if (form) {
+    form.addEventListener('submit', function() {
+      trackConversion('form_submit', 'lead_form');
+    });
+  }
+
+  document.querySelectorAll('a[href^="tel:"]').forEach(function(link) {
+    link.addEventListener('click', function() {
+      trackConversion('phone_click', 'phone_cta');
+    });
+  });
+
+  document.querySelectorAll('a[href^="mailto:"]').forEach(function(link) {
+    link.addEventListener('click', function() {
+      trackConversion('email_click', 'email_cta');
+    });
+  });
+})();
 </script>
 
 </body>
