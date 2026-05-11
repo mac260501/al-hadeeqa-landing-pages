@@ -3,6 +3,8 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+<link rel="icon" type="image/png" href="assets/gold-logo.png" />
+<link rel="apple-touch-icon" href="assets/gold-logo.png" />
 <title>Custom Aluminium Pergolas Dubai — from AED 15,000 | Al Hadeeqa Contracting</title>
 <meta name="description" content="Custom aluminium pergolas in Dubai from AED 15,000. Three tiers, DM approvals included, in-house crew. One contractor, one warranty. Free site visit." />
 <link rel="canonical" href="https://offers.alhadeeqacontracting.com/pergolas-2026/" />
@@ -40,6 +42,38 @@
     'page_title': document.title
   });
   gtag('config', 'AW-658897837');
+</script>
+
+<!-- Google tag (gtag.js) event - delayed navigation helper: form submission -->
+<script>
+  function gtagFormSubmit(url) {
+    var callback = function() {
+      if (typeof url === 'string') {
+        window.open(url, '_blank', 'noopener');
+      }
+    };
+    gtag('event', 'pergola_form_submit', {
+      'event_callback': callback,
+      'event_timeout': 2000,
+    });
+    return false;
+  }
+</script>
+
+<!-- Google tag (gtag.js) event - delayed navigation helper: WhatsApp click -->
+<script>
+  function gtagWAClick(url) {
+    var callback = function() {
+      if (typeof url === 'string') {
+        window.open(url, '_blank', 'noopener');
+      }
+    };
+    gtag('event', 'pergola_whatsapp_click', {
+      'event_callback': callback,
+      'event_timeout': 2000,
+    });
+    return false;
+  }
 </script>
 
 <script type="application/ld+json">
@@ -2938,13 +2972,7 @@
       var text = encodeURIComponent(lines.join("\n"));
       var url = "https://wa.me/971544419854?text=" + text;
 
-      // GA4 event
-      if (typeof window.gtag === 'function') {
-        try { window.gtag('event', 'whatsapp_click', { context: 'form_submit', tier: tier, area: area }); } catch(_) {}
-        try { window.gtag('event', 'form_submit',     { context: 'book_site_visit', tier: tier, area: area }); } catch(_) {}
-      }
-
-      window.open(url, '_blank', 'noopener');
+      gtagFormSubmit(url);
     });
   })();
 
@@ -2970,13 +2998,12 @@
     });
   })();
 
-  // ============= GA4 events on every wa.me click ========================
+  // ============= WhatsApp link clicks — delayed navigation via gtagWAClick =
   (function(){
     document.querySelectorAll('a.wa-link').forEach(function(a){
-      a.addEventListener('click', function(){
-        if (typeof window.gtag === 'function') {
-          try { window.gtag('event', 'whatsapp_click', { context: a.getAttribute('data-wa-context') || 'unknown' }); } catch(_) {}
-        }
+      a.addEventListener('click', function(e){
+        e.preventDefault();
+        gtagWAClick(a.href);
       });
     });
   })();
