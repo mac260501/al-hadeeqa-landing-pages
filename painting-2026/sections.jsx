@@ -4,7 +4,7 @@
 const WA_NUMBER = "971544419854";
 const PHONE_NUMBER = "+971544419854";
 const WA_TEXT = encodeURIComponent(
-  "Hi Al Hadeeqa, I'd like a quote for painting. (Sent from your site.)"
+  "Hi Al Hadeeqa, I'd like a quote for painting."
 );
 const waHref = `https://wa.me/${WA_NUMBER}?text=${WA_TEXT}`;
 const telHref = `tel:${PHONE_NUMBER.replace(/[^\d+]/g, "")}`;
