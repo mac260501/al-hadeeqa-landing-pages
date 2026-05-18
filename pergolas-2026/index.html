@@ -2093,6 +2093,162 @@
   .addons-pick .opt .lbl { font-family: "DM Sans", sans-serif; font-size: 14.5px; color: var(--cream); line-height: 1.3; }
   .addons-pick .opt .lbl em { font-family: "Cormorant Garamond", serif; font-style: italic; color: var(--brass); font-size: 1.05em; }
   .addons-pick .opt.checked { border-color: var(--brass); background: rgba(201,169,110,0.06); }
+
+  /* BUNKERS SECTION -------------------------------------------------------- */
+  .bunkers {
+    background: var(--ink);
+    padding: clamp(72px, 9vw, 124px) 0;
+    position: relative;
+    overflow: hidden;
+  }
+  /* Subtle depth grid in background */
+  .bunkers::before {
+    content: "";
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(rgba(242,237,230,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(242,237,230,0.03) 1px, transparent 1px);
+    background-size: 48px 48px;
+    pointer-events: none;
+  }
+  .bunkers-inner {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 52px;
+    position: relative;
+  }
+  @media (min-width: 900px) {
+    .bunkers-inner { grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
+  }
+  .bunkers-eyebrow {
+    font-family: "DM Mono", monospace;
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--brass);
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .bunkers-eyebrow::before { content: ""; width: 22px; height: 1px; background: var(--brass); }
+  .bunkers-title {
+    font-family: "Cormorant Garamond", serif;
+    font-weight: 300;
+    font-size: clamp(38px, 5vw, 68px);
+    line-height: 0.97;
+    letter-spacing: -0.022em;
+    color: var(--cream);
+    margin-bottom: 24px;
+  }
+  .bunkers-title em { font-style: italic; font-weight: 400; color: var(--brass); }
+  .bunkers-sub {
+    font-size: 15.5px;
+    line-height: 1.65;
+    color: rgba(242,237,230,0.6);
+    max-width: 44ch;
+    margin-bottom: 14px;
+  }
+  .bunkers-detail {
+    font-family: "DM Mono", monospace;
+    font-size: 10.5px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(242,237,230,0.35);
+    margin-bottom: 36px;
+    line-height: 1.8;
+  }
+  .bunkers-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-family: "DM Sans", sans-serif;
+    font-size: 14.5px;
+    font-weight: 500;
+    color: var(--cream);
+    text-decoration: none;
+    padding: 14px 24px;
+    border: 1px solid rgba(242,237,230,0.25);
+    border-radius: 999px;
+    transition: border-color 220ms ease, background 220ms ease;
+  }
+  .bunkers-cta:hover { border-color: var(--brass); background: rgba(201,169,110,0.08); color: var(--brass); }
+  .bunkers-cta .arrow { transition: transform 220ms ease; }
+  .bunkers-cta:hover .arrow { transform: translateX(3px); }
+  .bunker-cards { display: flex; flex-direction: column; gap: 2px; }
+  .bunker-card {
+    display: block;
+    text-decoration: none;
+    padding: clamp(24px, 2.8vw, 38px);
+    border: 1px solid rgba(242,237,230,0.1);
+    position: relative;
+    overflow: hidden;
+    transition: border-color 280ms ease, background 280ms ease;
+  }
+  .bunker-card::after {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 1px;
+    background: var(--brass);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 500ms cubic-bezier(.2,.6,.2,1);
+  }
+  .bunker-card:hover { border-color: rgba(242,237,230,0.22); background: rgba(242,237,230,0.025); }
+  .bunker-card:hover::after { transform: scaleX(1); }
+  .bunker-card-tag {
+    font-family: "DM Mono", monospace;
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--brass-deep);
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .bunker-card-tag .go {
+    color: rgba(242,237,230,0.25);
+    font-size: 14px;
+    letter-spacing: 0;
+    transition: color 220ms ease, transform 220ms ease;
+    display: inline-block;
+  }
+  .bunker-card:hover .bunker-card-tag .go { color: var(--brass); transform: translateX(4px); }
+  .bunker-card-name {
+    font-family: "Cormorant Garamond", serif;
+    font-weight: 400;
+    font-size: clamp(24px, 2.4vw, 32px);
+    line-height: 1.04;
+    letter-spacing: -0.014em;
+    color: var(--cream);
+    margin-bottom: 10px;
+  }
+  .bunker-card-name em { font-style: italic; color: var(--brass); }
+  .bunker-card-price {
+    font-family: "DM Mono", monospace;
+    font-size: 10.5px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(242,237,230,0.38);
+    margin-bottom: 14px;
+  }
+  .bunker-card-sub { font-size: 14px; line-height: 1.6; color: rgba(242,237,230,0.45); }
+  /* The Vault card — slightly warmer/golden treatment */
+  .bunker-card.vault {
+    background: rgba(201,169,110,0.04);
+    border-color: rgba(201,169,110,0.18);
+  }
+  .bunker-card.vault::after { background: linear-gradient(90deg, var(--brass), var(--brass-deep)); }
+  .bunker-card.vault .bunker-card-name { color: var(--brass); }
+  .bunker-card.vault .bunker-card-tag { color: var(--brass-deep); }
+  .bunker-card.vault:hover { background: rgba(201,169,110,0.07); border-color: rgba(201,169,110,0.35); }
+  /* Depth diagram in left column */
+  .bunkers-diagram {
+    margin-bottom: 32px;
+    opacity: 0.55;
+  }
 </style>
 </head>
 <body>
@@ -2720,6 +2876,88 @@
           </button>
           <div class="faq-a"><div class="faq-a-inner">Yes. Exterior painting is an active add-on to any pergola project. Most pergola installs disturb the immediate villa exterior anyway — paving, render, waterproofing — so combining the repaint with the pergola means one mobilisation, one contractor, one warranty. We use premium 3-coat exterior systems (Jotun, Dulux), UV-rated and salt-resistant for UAE conditions, and include crack repair and full surface prep. Villa exterior repaints start from AED 18,000 for a 3-bedroom villa.</div></div>
         </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BUNKERS ============================================================== -->
+<section class="bunkers" id="bunkers">
+  <div class="wrap">
+    <div class="bunkers-inner">
+
+      <div class="bunkers-copy">
+        <div class="bunkers-eyebrow eyebrow">Also by Al Hadeeqa · SafeHaven</div>
+
+        <!-- Cross-section depth diagram -->
+        <div class="bunkers-diagram" aria-hidden="true">
+          <svg viewBox="0 0 320 120" fill="none" stroke="rgba(242,237,230,0.6)" stroke-width="1" stroke-linecap="square" width="280">
+            <line x1="0" y1="28" x2="320" y2="28" stroke="rgba(242,237,230,0.4)" />
+            <text x="0" y="20" font-family="DM Mono,monospace" font-size="7" fill="rgba(242,237,230,0.4)" stroke="none" letter-spacing="2">GRADE LEVEL</text>
+            <g stroke="rgba(242,237,230,0.15)">
+              <line x1="0" y1="28" x2="8" y2="36"/><line x1="16" y1="28" x2="24" y2="36"/>
+              <line x1="32" y1="28" x2="40" y2="36"/><line x1="48" y1="28" x2="56" y2="36"/>
+              <line x1="64" y1="28" x2="72" y2="36"/><line x1="80" y1="28" x2="88" y2="36"/>
+              <line x1="96" y1="28" x2="104" y2="36"/><line x1="112" y1="28" x2="120" y2="36"/>
+              <line x1="128" y1="28" x2="136" y2="36"/><line x1="144" y1="28" x2="152" y2="36"/>
+              <line x1="160" y1="28" x2="168" y2="36"/><line x1="176" y1="28" x2="184" y2="36"/>
+              <line x1="192" y1="28" x2="200" y2="36"/><line x1="208" y1="28" x2="216" y2="36"/>
+              <line x1="224" y1="28" x2="232" y2="36"/><line x1="240" y1="28" x2="248" y2="36"/>
+              <line x1="256" y1="28" x2="264" y2="36"/><line x1="272" y1="28" x2="280" y2="36"/>
+              <line x1="288" y1="28" x2="296" y2="36"/><line x1="304" y1="28" x2="312" y2="36"/>
+            </g>
+            <line x1="18" y1="28" x2="18" y2="112" stroke="rgba(242,237,230,0.2)" stroke-dasharray="2 3"/>
+            <text x="22" y="70" font-family="DM Mono,monospace" font-size="6.5" fill="rgba(242,237,230,0.35)" stroke="none" letter-spacing="1">3–6 m</text>
+            <rect x="48" y="44" width="230" height="68" stroke="rgba(242,237,230,0.5)" stroke-width="1.2"/>
+            <rect x="56" y="52" width="214" height="52" stroke="rgba(242,237,230,0.25)" stroke-width="0.7"/>
+            <line x1="80" y1="52" x2="80" y2="104" stroke="rgba(242,237,230,0.18)"/>
+            <line x1="120" y1="52" x2="120" y2="104" stroke="rgba(242,237,230,0.18)"/>
+            <line x1="200" y1="52" x2="200" y2="104" stroke="rgba(242,237,230,0.18)"/>
+            <rect x="130" y="28" width="36" height="16" stroke="#C9A96E" stroke-width="1.2"/>
+            <line x1="148" y1="28" x2="148" y2="44" stroke="#C9A96E" stroke-dasharray="2 2"/>
+            <text x="136" y="23" font-family="DM Mono,monospace" font-size="6" fill="#C9A96E" stroke="none" letter-spacing="1">ENTRY</text>
+            <text x="56" y="83" font-family="Cormorant Garamond,serif" font-style="italic" font-size="11" fill="rgba(242,237,230,0.55)" stroke="none">SafeHaven</text>
+          </svg>
+        </div>
+
+        <h2 class="bunkers-title" data-reveal>
+          We also build <em>bunkers.</em>
+        </h2>
+        <p class="bunkers-sub" data-reveal data-reveal-delay="1">
+          SafeHaven is our underground bunker division — reinforced concrete structures built discreetly beneath Dubai villas. Six bunker tiers from AED 100,000, plus The Vault: a fully appointed private underground residence from AED 5,000,000.
+        </p>
+        <p class="bunkers-detail">
+          UAE licensed · ISO 9001:2015 · 6–10 week build · Dubai only
+        </p>
+        <a class="bunkers-cta" href="https://alhadeeqacontracting.com/bunkers/" target="_blank" rel="noopener">
+          Explore SafeHaven bunkers <span class="arrow">→</span>
+        </a>
+      </div>
+
+      <div class="bunker-cards" data-reveal data-reveal-delay="1">
+
+        <!-- SafeHaven bunker range -->
+        <a class="bunker-card" href="https://alhadeeqacontracting.com/bunkers/" target="_blank" rel="noopener">
+          <div class="bunker-card-tag">
+            SafeHaven · Underground Bunkers
+            <span class="go">→</span>
+          </div>
+          <div class="bunker-card-name">Private <em>bunkers.</em></div>
+          <div class="bunker-card-price">From AED 100,000</div>
+          <p class="bunker-card-sub">Six bunker tiers — Pod through Fortified. 2–25 people. Precast or poured-in-place reinforced concrete. Blast-proof hatch, independent air filtration, 72-hour power backup. No visible trace above ground.</p>
+        </a>
+
+        <!-- The Vault -->
+        <a class="bunker-card vault" href="https://alhadeeqacontracting.com/the-vault/" target="_blank" rel="noopener">
+          <div class="bunker-card-tag">
+            The Vault · Underground Residence
+            <span class="go">→</span>
+          </div>
+          <div class="bunker-card-name">The <em>Vault.</em></div>
+          <div class="bunker-card-price">From AED 5,000,000</div>
+          <p class="bunker-card-sub">Beyond the bunker. A private underground residence — car ramp, cinema, gym, lounge bar, master suite. 300–500+ sqm. 500mm reinforced concrete walls. 14+ days fully autonomous.</p>
+        </a>
+
       </div>
     </div>
   </div>
