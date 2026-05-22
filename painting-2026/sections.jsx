@@ -1,13 +1,19 @@
 // sections.jsx — Al Hadeeqa painting landing, section components
 // Exposes globals at end for app.jsx to consume.
 
-const WA_NUMBER = "971544419854";
-const PHONE_NUMBER = "+971544419854";
+const WA_NUMBER = "971545546341";
+const PHONE_NUMBER = "+971545546341";
 const WA_TEXT = encodeURIComponent(
   "Hi Al Hadeeqa, I'd like a quote for painting."
 );
 const waHref = `https://wa.me/${WA_NUMBER}?text=${WA_TEXT}`;
 const telHref = `tel:${PHONE_NUMBER.replace(/[^\d+]/g, "")}`;
+
+const onWAClick = (e) => {
+  e.preventDefault();
+  if (typeof gtagSendEvent === 'function') gtagSendEvent(waHref);
+  else window.location = waHref;
+};
 
 // ── icons ───────────────────────────────────────────────────────────────
 const WAIcon = ({ size = 16 }) => (
@@ -36,8 +42,8 @@ function TopBar() {
         <a href="#process">Process</a>
         <a href="#faq">FAQ</a>
       </nav>
-      <a className="phone" href={telHref}>+971 54 441 9854</a>
-      <a className="btn btn--wa" href={waHref} target="_blank" rel="noreferrer">
+      <a className="phone" href={telHref}>+971 54 554 6341</a>
+      <a className="btn btn--wa" href={waHref} onClick={onWAClick}>
         <WAIcon /> WhatsApp
       </a>
     </header>
@@ -75,7 +81,7 @@ function Hero() {
                 quote in 24 hours, fixed price, furniture protected.
               </p>
               <div className="hero-ctas">
-                <a className="btn btn--wa btn--lg" href={waHref} target="_blank" rel="noreferrer">
+                <a className="btn btn--wa btn--lg" href={waHref} onClick={onWAClick}>
                   <WAIcon size={18} /> WhatsApp us a photo
                 </a>
                 <a className="btn btn--ghost btn--lg" href="#form">
@@ -143,7 +149,7 @@ function OfferBand() {
               quote the next day. If we can't hit 24 hours, the site visit's on us anyway.
             </p>
           </div>
-          <a className="btn btn--wa btn--lg" href={waHref} target="_blank" rel="noreferrer">
+          <a className="btn btn--wa btn--lg" href={waHref} onClick={onWAClick}>
             <WAIcon size={18} /> Book a site visit
           </a>
         </div>
@@ -517,7 +523,9 @@ function FinalCTA() {
       const text = encodeURIComponent(
         `Hi Al Hadeeqa, I'd like a painting quote.\n\nName: ${form.name}\nEmirate: ${form.emirate}\nScope: ${scope}\nDetails: ${form.details}\nWhatsApp: ${form.whatsapp}`
       );
-      window.open(`https://wa.me/${WA_NUMBER}?text=${text}`, "_blank", "noopener");
+      const formWaHref = `https://wa.me/${WA_NUMBER}?text=${text}`;
+      if (typeof gtagSendEvent === 'function') gtagSendEvent(formWaHref);
+      else window.location = formWaHref;
       setSent(true);
     }
   };
@@ -537,15 +545,15 @@ function FinalCTA() {
             <ul className="contact-list">
               <li>
                 <span className="l">WA</span>
-                <a className="v" href={waHref} target="_blank" rel="noreferrer">
-                  +971 54 441 9854
+                <a className="v" href={waHref} onClick={onWAClick}>
+                  +971 54 554 6341
                   <small>WhatsApp · fastest</small>
                 </a>
               </li>
               <li>
                 <span className="l">Tel</span>
                 <a className="v" href={telHref}>
-                  +971 54 441 9854
+                  +971 54 554 6341
                   <small>Call · 9 am – 6 pm</small>
                 </a>
               </li>
@@ -557,7 +565,7 @@ function FinalCTA() {
                 </a>
               </li>
             </ul>
-            <a className="btn btn--wa btn--lg" href={waHref} target="_blank" rel="noreferrer">
+            <a className="btn btn--wa btn--lg" href={waHref} onClick={onWAClick}>
               <WAIcon size={18} /> Send a WhatsApp now
             </a>
           </div>
@@ -576,7 +584,7 @@ function FinalCTA() {
                   reply within 60 minutes; outside that, first thing the
                   following morning.
                 </p>
-                <a className="btn btn--wa" href={waHref} target="_blank" rel="noreferrer">
+                <a className="btn btn--wa" href={waHref} onClick={onWAClick}>
                   <WAIcon /> Or message us directly
                 </a>
               </div>
@@ -641,7 +649,7 @@ function FinalCTA() {
                     Request quote <Arrow />
                   </button>
                   <span className="muted" style={{fontFamily:"var(--mono)", fontSize:11, letterSpacing:".1em", textTransform:"uppercase"}}>
-                    or <a href={waHref} target="_blank" rel="noreferrer" style={{textDecoration:"underline"}}>WhatsApp instead</a>
+                    or <a href={waHref} onClick={onWAClick} style={{textDecoration:"underline"}}>WhatsApp instead</a>
                   </span>
                 </div>
               </>
@@ -682,8 +690,8 @@ function Footer() {
           <div>
             <h5>Contact</h5>
             <ul>
-              <li><a href={waHref} target="_blank" rel="noreferrer">WhatsApp +971 54 441 9854</a></li>
-              <li><a href={telHref}>Call +971 54 441 9854</a></li>
+              <li><a href={waHref} onClick={onWAClick}>WhatsApp +971 54 554 6341</a></li>
+              <li><a href={telHref}>Call +971 54 554 6341</a></li>
               <li><a href="mailto:alhadeeqallc@gmail.com">alhadeeqallc@gmail.com</a></li>
               <li><a href="https://alhadeeqacontracting.com" target="_blank" rel="noreferrer">alhadeeqacontracting.com</a></li>
             </ul>
@@ -711,7 +719,7 @@ function Footer() {
 function MobileCTA() {
   return (
     <div className="mobile-cta">
-      <a className="btn btn--wa" href={waHref} target="_blank" rel="noreferrer">
+      <a className="btn btn--wa" href={waHref} onClick={onWAClick}>
         <WAIcon /> WhatsApp
       </a>
       <a className="btn btn--ghost" href="#form">Request a quote</a>

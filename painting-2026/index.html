@@ -43,7 +43,7 @@
     "name": "Al Hadeeqa Contracting",
     "description": "Licensed Dubai construction contractor offering interior and exterior painting services since 2009. ISO 9001:2015 and ISO 14001:2015 certified. 50+ in-house crew.",
     "url": "https://alhadeeqacontracting.com",
-    "telephone": "+971544419854",
+    "telephone": "+971545546341",
     "email": "alhadeeqallc@gmail.com",
     "address": {
       "@type": "PostalAddress",
@@ -83,6 +83,22 @@
       ]
     }
   }
+  </script>
+
+  <!-- Google tag (gtag.js) event - delayed navigation helper -->
+  <script>
+    function gtagSendEvent(url) {
+      var callback = function () {
+        if (typeof url === 'string') {
+          window.location = url;
+        }
+      };
+      gtag('event', 'painting_whatsapp_click', {
+        'event_callback': callback,
+        'event_timeout': 2000,
+      });
+      return false;
+    }
   </script>
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
